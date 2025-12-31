@@ -1,0 +1,38 @@
+<div class="max-w-4xl mx-auto">
+  @if (project(); as p) {
+    <div class="space-y-8">
+      <div>
+        <a [routerLink]="['/projects']" class="text-cyan-400 hover:text-cyan-300 flex items-center mb-6">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Back to Projects
+        </a>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{{ p.title }}</h1>
+        <p class="mt-2 text-sm text-slate-500">{{ p.date }}</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          @for (tag of p.tags; track tag) {
+            <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-xs font-semibold text-cyan-300">{{ tag }}</span>
+          }
+        </div>
+      </div>
+      <img class="w-full rounded-lg shadow-lg" [src]="p.imageUrl" [alt]="p.title">
+
+      <div class="prose prose-invert prose-lg max-w-none text-slate-300 prose-headings:text-cyan-400 prose-strong:text-white">
+        <p class="lead">{{ p.summary }}</p>
+        
+        <h3>The Problem</h3>
+        <p>{{ p.problem }}</p>
+        
+        <h3>Our Approach</h3>
+        <p>{{ p.approach }}</p>
+        
+        <h3>Findings</h3>
+        <p>{{ p.findings }}</p>
+        
+        <h3>Outcome & Remediation</h3>
+        <p>{{ p.outcome }}</p>
+      </div>
+    </div>
+  } @else {
+    <p>Loading project details...</p>
+  }
+</div>

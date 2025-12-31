@@ -1,0 +1,44 @@
+<div class="space-y-16">
+  <div class="max-w-3xl mx-auto text-center">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">About Me</h1>
+    <p class="mt-4 text-lg text-slate-400">
+      A dedicated security professional with a passion for offensive security and proactive defense. My mission is to secure digital assets by thinking like an adversary.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="md:col-span-1">
+      <img class="rounded-lg shadow-lg w-full max-w-sm md:max-w-none mx-auto aspect-[3/4] object-cover object-top" src="assets/images/profile.png" alt="Sandesh Kumar Gupta">
+    </div>
+    <div class="md:col-span-2 space-y-6 text-slate-300">
+      <h2 class="text-2xl font-bold text-cyan-400">My Mission</h2>
+      <p>
+        In an era of ever-evolving cyber threats, my focus is on staying ahead of the curve. I specialize in identifying critical vulnerabilities in complex systems, from web applications and cloud infrastructure to IoT devices. I believe the best defense is a meticulously planned offense, and I bring this mindset to every engagement, helping organizations strengthen their security posture from the inside out.
+      </p>
+      <h2 class="text-2xl font-bold text-cyan-400">Expertise Summary</h2>
+      <p>
+        With hands-on experience in penetration testing, red teaming, and security research, I possess a deep understanding of attack vectors and mitigation strategies.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://drive.google.com/file/d/1FjWbzN3qqUBCpkP-IHUZzF8s9v8hGkXu/view?usp=sharing" target="_blank" class="inline-flex items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-md text-cyan-400 bg-slate-800 hover:bg-slate-700 transition-colors duration-300">
+          <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-center text-white">Core Skills</h2>
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      @for (skill of skills(); track skill.name) {
+        <div class="bg-slate-800/50 rounded-lg p-4 flex items-center space-x-4 border border-slate-700 hover:border-cyan-500 transition-colors">
+          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="skill.icon"></path></svg>
+          <span class="font-medium text-slate-300">{{ skill.name }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

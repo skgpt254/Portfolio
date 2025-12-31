@@ -1,0 +1,22 @@
+<div class="space-y-12">
+  <div class="max-w-3xl mx-auto text-center">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Services</h1>
+    <p class="mt-4 text-lg text-slate-400">
+      Providing a range of offensive security services to identify, assess, and mitigate cyber risks.
+    </p>
+  </div>
+
+  <div class="max-w-4xl mx-auto space-y-8">
+    @for (service of services(); track service.name) {
+      <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+        <h2 class="text-2xl font-bold text-cyan-400">{{ service.name }}</h2>
+        <p class="mt-2 text-slate-300">{{ service.description }}</p>
+        <div class="mt-4">
+          <a [routerLink]="['/contact']" class="text-sm font-semibold text-cyan-400 hover:text-cyan-300">
+            Book Consultation &rarr;
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+</div>

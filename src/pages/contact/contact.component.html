@@ -1,0 +1,74 @@
+<div class="max-w-2xl mx-auto">
+  <div class="text-center">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Get In Touch</h1>
+    <p class="mt-4 text-lg text-slate-400">
+      Have a project in mind or need a security assessment? Let's talk.
+    </p>
+  </div>
+
+  <div class="mt-12">
+    @switch (submissionStatus()) {
+      @case ('success') {
+        <div class="bg-green-900/50 border border-green-600 text-green-300 px-4 py-3 rounded-md text-center" role="alert">
+          <strong class="font-bold">Message Sent!</strong>
+          <span class="block sm:inline"> Thank you for reaching out. I'll get back to you shortly.</span>
+        </div>
+      }
+      @case ('error') {
+        <div class="bg-red-900/50 border border-red-600 text-red-300 px-4 py-3 rounded-md text-center" role="alert">
+          <strong class="font-bold">Submission Failed!</strong>
+          <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+        </div>
+      }
+      @default {
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Honeypot field for spam prevention -->
+          <input type="text" formControlName="honeypot" class="hidden">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-slate-300">Name</label>
+              <input type="text" id="name" formControlName="name" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+              @if (name?.invalid && (name?.dirty || name?.touched)) {
+                <p class="mt-1 text-sm text-red-400">Name is required.</p>
+              }
+            </div>
+            <div>
+              <label for="contact" class="block text-sm font-medium text-slate-300">Contact</label>
+              <input type="tel" id="contact" formControlName="contact" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+            </div>
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-300">Email</label>
+            <input type="email" id="email" formControlName="email" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+            @if (email?.invalid && (email?.dirty || email?.touched)) {
+              <p class="mt-1 text-sm text-red-400">Please enter a valid email address.</p>
+            }
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-300">Message</label>
+            <textarea id="message" formControlName="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+            @if (message?.invalid && (message?.dirty || message?.touched)) {
+              <p class="mt-1 text-sm text-red-400">Message must be at least 10 characters long.</p>
+            }
+          </div>
+          <div>
+            <button type="submit" [disabled]="contactForm.invalid || submissionStatus() === 'submitting'" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+              @if (submissionStatus() === 'submitting') {
+                <span>Sending...</span>
+              } @else {
+                <span>Send Message</span>
+              }
+            </button>
+          </div>
+        </form>
+      }
+    }
+    <div class="mt-8 text-center">
+      <p class="text-slate-400">Or schedule a call directly:</p>
+      <a href="#" class="font-medium text-cyan-400 hover:text-cyan-300">
+        Schedule a 30-Minute Consultation
+      </a>
+    </div>
+  </div>
+</div>
