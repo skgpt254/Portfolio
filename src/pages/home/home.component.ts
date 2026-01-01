@@ -2,8 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   signal,
-  OnInit,
-  OnDestroy,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { CommonModule } from "@angular/common";
@@ -33,11 +31,7 @@ interface AttackScenario {
   riskLevel: "Critical" | "High" | "Medium";
 }
 
-interface ThreatFeed {
-  type: "warning" | "info" | "success" | "critical";
-  message: string;
-  timestamp: string;
-}
+
 
 @Component({
   selector: "app-home",
@@ -46,11 +40,10 @@ interface ThreatFeed {
   standalone: true,
   imports: [RouterLink, CommonModule],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent {
   activeCardIndex = signal<number | null>(null);
   activeScenarioIndex = signal<number | null>(null);
-  currentThreatIndex = signal<number>(0);
-  private threatInterval: any;
+
 
   // Educational Knowledge Cards - Deep Dive Content
   knowledgeCards: KnowledgeCard[] = [
@@ -148,49 +141,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
   ];
 
-  // Live Threat Feed Simulation
-  threatFeed: ThreatFeed[] = [
-    {
-      type: "critical",
-      message: "CVE-2024-XXXX: Critical RCE in Apache Struts",
-      timestamp: "2 min ago",
-    },
-    {
-      type: "warning",
-      message: "New phishing campaign targeting Microsoft 365 users",
-      timestamp: "15 min ago",
-    },
-    {
-      type: "info",
-      message: "NIST releases updated password guidelines",
-      timestamp: "1 hour ago",
-    },
-    {
-      type: "success",
-      message: "LockBit ransomware gang infrastructure seized by FBI",
-      timestamp: "3 hours ago",
-    },
-    {
-      type: "critical",
-      message: "Supply chain attack detected in popular NPM package",
-      timestamp: "5 hours ago",
-    },
-    {
-      type: "warning",
-      message: "Increase in QR code phishing (Quishing) attacks",
-      timestamp: "8 hours ago",
-    },
-    {
-      type: "info",
-      message: "Bug bounty: $100K paid for iOS kernel vulnerability",
-      timestamp: "12 hours ago",
-    },
-    {
-      type: "success",
-      message: "Major botnet disrupted - 500K devices freed",
-      timestamp: "1 day ago",
-    },
-  ];
+
 
   // Quick Security Tips
   quickTips = [
@@ -264,18 +215,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     { value: "277", label: "Days to detect breach", trend: "Average" },
   ];
 
-  ngOnInit() {
-    // Rotate threat feed every 4 seconds
-    this.threatInterval = setInterval(() => {
-      this.currentThreatIndex.update((i) => (i + 1) % this.threatFeed.length);
-    }, 4000);
-  }
 
-  ngOnDestroy() {
-    if (this.threatInterval) {
-      clearInterval(this.threatInterval);
-    }
-  }
 
   toggleCard(index: number) {
     if (this.activeCardIndex() === index) {
@@ -293,18 +233,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  getThreatTypeClass(type: string): string {
-    switch (type) {
-      case "critical":
-        return "text-red-500";
-      case "warning":
-        return "text-yellow-500";
-      case "success":
-        return "text-green-500";
-      default:
-        return "text-cyan-400";
-    }
-  }
+
 
   getRiskLevelClass(level: string): string {
     switch (level) {
