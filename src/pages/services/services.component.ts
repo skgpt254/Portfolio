@@ -6,6 +6,7 @@ import { PortfolioDataService } from '../../services/portfolio-data.service';
   selector: 'app-services',
   templateUrl: './services.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [RouterLink]
 })
 export class ServicesComponent {

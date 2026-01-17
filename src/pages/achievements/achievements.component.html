@@ -1,31 +1,163 @@
-<div class="space-y-12">
-  <div class="text-center">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Achievements</h1>
-    <p class="mt-4 text-lg text-slate-400">
-      Recognitions and certifications from leading cybersecurity platforms.
-    </p>
-  </div>
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
+    <!-- Left Section: Achievements -->
+    <div class="space-y-8">
+      <div class="text-center xl:text-left">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Achievements
+        </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-    <!-- TryHackMe Badge -->
-    <div class="rounded-lg p-4 border border-transparent hover:border-slate-700/50 transition-all duration-300 flex flex-col items-center justify-center text-center h-full">
-      <img src="https://repository-images.githubusercontent.com/518509014/f7450454-158c-45e0-8b38-0c0ae4d7394c" alt="TryHackMe" class="h-20 w-auto rounded-md mb-4 shadow-sm opacity-90 hovered:opacity-100 transition-opacity">
-      <div class="w-full flex justify-center overflow-hidden rounded-lg">
-        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4203094" style='border:none; width: 100%; height: 240px;'></iframe>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- TryHackMe Badge -->
+        <div
+          class="rounded-lg p-4 border border-transparent hover:border-slate-700/50 flex flex-col items-center justify-center text-center h-full bg-slate-900/50"
+        >
+          <img
+            src="https://repository-images.githubusercontent.com/518509014/f7450454-158c-45e0-8b38-0c0ae4d7394c"
+            alt="TryHackMe"
+            class="h-32 w-auto rounded-md mb-4 shadow-sm opacity-90 hovered:opacity-100"
+          />
+          <div class="w-full flex justify-center overflow-hidden rounded-lg">
+            <iframe
+              src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4203094"
+              style="border: none; width: 100%; height: 220px; overflow: hidden;"
+              scrolling="no"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- HackTheBox Badge -->
+        <div
+          class="rounded-lg p-4 border border-transparent hover:border-slate-700/50 flex flex-col items-center justify-center text-center h-full bg-slate-900/50"
+        >
+          <div
+            class="w-full h-full flex flex-col items-center justify-center space-y-4"
+          >
+            <img
+              src="https://www.hackthebox.com/images/logo-htb.svg"
+              alt="HackTheBox"
+              class="h-16 w-auto filter drop-shadow-lg"
+            />
+            <div class="space-y-2">
+              <p class="text-slate-400 font-medium">
+                Active Participant & CTF Player
+              </p>
+              <a
+                href="https://app.hackthebox.com/public/users/3062470"
+                target="_blank"
+                class="inline-flex items-center px-6 py-2 border border-cyan-500/30 text-sm font-medium rounded-full text-cyan-400 hover:bg-cyan-500/10"
+              >
+                View Profile
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- HackTheBox Badge -->
-    <div class="rounded-lg p-4 border border-transparent hover:border-slate-700/50 transition-all duration-300 flex flex-col items-center justify-center text-center h-full">
-      <div class="w-full h-full flex flex-col items-center justify-center space-y-4">
-         <img src="https://www.hackthebox.com/images/logo-htb.svg" alt="HackTheBox" class="h-20 w-auto filter drop-shadow-lg">
-         <div class="space-y-2">
-           <p class="text-slate-400 font-medium">Active Participant & CTF Player</p>
-           <a href="https://app.hackthebox.com" target="_blank" class="inline-flex items-center px-6 py-2 border border-cyan-500/30 text-sm font-medium rounded-full text-cyan-400 hover:bg-cyan-500/10 transition-colors">
-              View Profile
-           </a>
-         </div>
+    <!-- Right Section: Certifications -->
+    <div class="space-y-8">
+      <div class="text-center xl:text-left">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Certifications
+        </h2>
+
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div
+          *ngFor="let cert of certificates; let i = index"
+          class="aspect-4/3 rounded-lg p-1 border border-transparent hover:border-slate-700/50 flex items-center justify-center bg-slate-800/30 backdrop-blur-sm cursor-pointer hover:bg-slate-700/30 group overflow-hidden"
+          (click)="openCert(i)"
+        >
+          <img
+            [src]="cert"
+            alt="Certification"
+            class="w-full h-full object-cover rounded-lg shadow-lg group-hover:scale-105"
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Image Modal -->
+  <div
+    *ngIf="selectedCertIndex !== null"
+    class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
+    (click)="closeCert()"
+  >
+    <!-- Close Button -->
+    <button
+      (click)="closeCert()"
+      class="absolute top-4 right-4 text-white/70 hover:text-white z-[101]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-10 w-10"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <!-- Prev Button -->
+    <button
+      (click)="prevCert($event)"
+      class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 rounded-full p-3 hover:bg-white/20 z-[101]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </button>
+
+    <!-- Image -->
+    <div class="relative max-w-7xl w-full flex justify-center items-center h-full">
+      <img
+        [src]="certificates[selectedCertIndex]"
+        alt="Certificate Zoom"
+        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl select-none"
+        (click)="$event.stopPropagation()"
+      />
+    </div>
+
+    <!-- Next Button -->
+    <button
+      (click)="nextCert($event)"
+      class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 rounded-full p-3 hover:bg-white/20 z-[101]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </button>
+  </div>
+

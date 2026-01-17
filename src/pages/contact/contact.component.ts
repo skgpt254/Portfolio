@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [ReactiveFormsModule, CommonModule]
 })
 export class ContactComponent {

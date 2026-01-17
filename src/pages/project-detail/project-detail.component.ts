@@ -9,6 +9,7 @@ import { Project } from '../../models/project.model';
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [CommonModule, RouterLink]
 })
 export class ProjectDetailComponent {
