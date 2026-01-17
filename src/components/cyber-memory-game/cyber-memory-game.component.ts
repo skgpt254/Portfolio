@@ -26,7 +26,7 @@ interface Card {
       <!-- Header -->
       <div class="text-center mb-8 relative z-10">
         <div class="inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-sm mb-4">
-          ✨ MISSION: RESTORE THE MAINFRAME ✨
+          MISSION: RESTORE THE MAINFRAME
         </div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 mb-2">
           Cyber Memory Protocol
