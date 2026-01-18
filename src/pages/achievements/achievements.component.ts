@@ -60,4 +60,33 @@ export class AchievementsComponent {
       this.prevCert();
     }
   }
+
+  // Swipe support
+  private touchStartX = 0;
+  private touchEndX = 0;
+
+  @HostListener("touchstart", ["$event"])
+  onTouchStart(event: TouchEvent) {
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  @HostListener("touchend", ["$event"])
+  onTouchEnd(event: TouchEvent) {
+    this.touchEndX = event.changedTouches[0].screenX;
+    this.handleSwipe();
+  }
+
+  private handleSwipe() {
+    if (this.selectedCertIndex === null) return;
+
+    const threshold = 50;
+
+    if (this.touchEndX < this.touchStartX - threshold) {
+      this.nextCert();
+    }
+
+    if (this.touchEndX > this.touchStartX + threshold) {
+      this.prevCert();
+    }
+  }
 }
