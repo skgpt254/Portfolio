@@ -1,59 +1,80 @@
-# Sandesh Kumar Gupta - My Cybersecurity Portfolio 👨‍💻🔐
+# Portfolio
 
-Hey there! 👋 I'm Sandesh. Welcome to my personal portfolio.
+A personal portfolio showcasing web projects built with HTML, TypeScript, and CSS. This repository contains the source code for a responsive, modern portfolio site with interactive components and reusable TypeScript modules.
 
-I'm a B.Tech student with a huge passion for Cybersecurity, Ethical Hacking, and Red Teaming. I built this site to showcase the cool stuff I've been working on, my certifications, and to just have a place that truly represents my skills.
+## Live Demo
 
-Instead of a boring resume site, I went for a full-on "hacker dashboard" vibe. I wanted it to feel like you're actually logging into a secure system. It's built as a Single Page App (SPA) so it's super snappy.
+Link to the live site (if deployed): https://your-domain.example.com
 
-## 🌟 Cool Features
+## Features
 
-Here's what I packed into this project:
+- Responsive, mobile-first design
+- Projects gallery with filters and modal previews
+- Smooth navigation and scroll animations
+- Accessible markup and keyboard-friendly interactions
+- Built with TypeScript for modular, type-safe code
 
-- **Cyberpunk/Hacker Aesthetic**: Dark mode, terminal fonts, and that classic green-on-black feel (but modernized).
-- **Live Threat Feed**: Added a simulated real-time threat feed on the home page. It looks pretty awesome.
-- **Knowledge Cards**: Little bite-sized info cards about security concepts I find interesting.
-- **Project Showcase**: A detailed look at my pentesting reports, CTF achievements, and other security projects.
-- **Responsive**: Works perfectly on your phone too, because I used Tailwind CSS.
+## Tech Stack
 
-## 🛠️ The Tech I Used
+- HTML
+- TypeScript
+- CSS (vanilla)
+- Build tooling: Vite (or specify your tool)
 
-I wanted to use the latest tech for this to keep my dev skills sharp:
+## Project Structure
 
-- **Angular**: Bleeding edge! For that fast, component-based structure.
-- **Tailwind CSS**: For styling everything quickly without writing a million CSS files.
-- **TypeScript**: Because types save lives (and debugging time).
+- index.html — Main entry
+- src/ — TypeScript source files
+  - main.ts — App bootstrap
+  - components/ — Reusable UI components
+  - styles/ — CSS files
+- public/ — Static assets (images, icons)
 
-## 🏃‍♂️ How to Run It
+Adjust paths if your repository structure differs.
 
-If you want to check out the code or run it on your laptop:
+## Getting Started
 
-1.  **Clone my repo**:
+1. Clone the repo
 
-    ```bash
-    git clone https://github.com/skgpt254/sandesh-kumar-gupta-cybersecurity-portfolio.git
-    cd sandesh-kumar-gupta-cybersecurity-portfolio
-    ```
+   git clone https://github.com/skgpt254/Portfolio.git
+   cd Portfolio
 
-2.  **Install the packages**:
+2. Install dependencies
 
-    ```bash
-    npm install
-    ```
+   npm install
 
-3.  **Fire it up**:
+3. Run the development server
 
-    ```bash
-    npm run dev
-    ```
+   npm run dev
 
-4.  **Check it out**:
-    Open your browser and go to `http://localhost:3000/`.
+4. Build for production
 
-## 🤝 Let's Connect!
+   npm run build
 
-If you're into cybersecurity, want to collaborate on a CTF, or just want to chat about tech, feel free to reach out through the contact form on the site.
+5. Preview production build
 
----
+   npm run preview
 
-_Built with 💻 and ☕ by Sandesh Kumar Gupta._
+If you use a different package manager or scripts, update the commands accordingly.
+
+## Development Tips
+
+- Use TypeScript's strict mode for better reliability
+- Keep components small and focused
+- Add unit tests for critical logic
+
+## Deployment
+
+Deploy the contents of the build/dist folder to your hosting provider (Netlify, Vercel, GitHub Pages, etc.). If using GitHub Pages, you can use the gh-pages branch or GitHub Actions to automate deployments.
+
+## Contributing
+
+Contributions are welcome. Please open an issue or submit a pull request with a clear description of your changes.
+
+## License
+
+Specify your license (e.g., MIT). If you don't have one, add a LICENSE file.
+
+## Contact
+
+Maintainer: skgpt254 — https://github.com/skgpt254
