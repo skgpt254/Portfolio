@@ -17,6 +17,8 @@ export class AchievementsComponent {
     "assets/images/certifications/5c.png",
     "assets/images/certifications/6c.png",
     "assets/images/certifications/7c.jpg",
+    "assets/images/certifications/8c.jpg",
+    "assets/images/certifications/9c.png",
   ];
 
   selectedCertIndex: number | null = null;
