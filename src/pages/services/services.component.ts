@@ -7,7 +7,7 @@ import { PortfolioDataService } from '../../services/portfolio-data.service';
   templateUrl: './services.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterLink]
+  imports: [RouterLink],
 })
 export class ServicesComponent {
   private dataService = inject(PortfolioDataService);

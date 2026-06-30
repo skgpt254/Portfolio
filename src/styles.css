@@ -1,16 +1,405 @@
 @import "tailwindcss";
 
-/* Custom scrollbar for a more modern look */
-::-webkit-scrollbar {
-  width: 8px;
+/* ══════════════════════════════════════
+   DESIGN TOKENS — status-color system
+   (inspired by terminal/dashboard semantics:
+   each hue carries meaning, not decoration)
+══════════════════════════════════════ */
+:root {
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  --c-info:    #22d3ee;  /* cyan    — identity / primary accent */
+  --c-success: #34d399;  /* green   — verified / certifications / achievements */
+  --c-warn:    #fbbf24;  /* amber   — active / in-progress / live status */
+  --c-alert:   #f87171;  /* red     — critical / rank / standout stat */
+  --c-special: #a78bfa;  /* violet  — ML/AI / research tags */
+  --c-route:   #fb923c;  /* orange  — network / systems tags */
 }
-::-webkit-scrollbar-track {
-  background: #1e293b; /* slate-800 */
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
-::-webkit-scrollbar-thumb {
-  background: #334155; /* slate-700 */
-  border-radius: 4px;
+body {
+  background-color: #080d14;
+  color: #b8c5d4;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #475569; /* slate-600 */
+
+/* Display heading font — distinctive, used for h1/h2/section titles */
+.font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* ── Focus ── */
+:focus-visible { outline: 1px solid #22d3ee80; outline-offset: 3px; border-radius: 3px; }
+
+/* ── Line clamp ── */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
+/* ══════════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════════ */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  /* Light blue → dark blue along the bar's own length, so as the bar grows
+     wider while scrolling, the visible portion shifts from light to dark. */
+  background: linear-gradient(90deg, #7dd3fc, #38bdf8, #0ea5e9, #0369a1, #0c3a66);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  /* Subtle top-glow only on the bar itself, not on cards */
+  box-shadow: 0 0 8px #0ea5e960;
+}
+
+/* ══════════════════════════════════════
+   NEUMORPHISM / SKEUOMORPHISM
+══════════════════════════════════════ */
+
+/* Neumorphic card — elevated surface feel */
+.neu-card {
+  background: #0d1520;
+  border: 1px solid #1a2535;
+  border-radius: 16px;
+  box-shadow:
+    4px 4px 12px #04080f,
+    -2px -2px 8px #162030;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.neu-card:hover {
+  border-color: #243040;
+  box-shadow:
+    6px 6px 16px #04080f,
+    -3px -3px 10px #182535;
+}
+
+/* Neumorphic inset — pressed/recessed feel */
+.neu-inset {
+  background: #080d14;
+  border: 1px solid #0f1822;
+  border-radius: 12px;
+  box-shadow:
+    inset 2px 2px 6px #04080f,
+    inset -1px -1px 4px #111e2e;
+}
+
+/* Neumorphic button */
+.neu-btn {
+  background: #0d1520;
+  border: 1px solid #1a2535;
+  border-radius: 8px;
+  box-shadow:
+    3px 3px 8px #04080f,
+    -2px -2px 6px #162030;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.neu-btn:hover {
+  box-shadow:
+    4px 4px 10px #04080f,
+    -2px -2px 8px #1a2d40;
+}
+.neu-btn:active {
+  box-shadow:
+    inset 2px 2px 5px #04080f,
+    inset -1px -1px 3px #162030;
+  transform: scale(0.98);
+}
+
+/* Skeuomorphic cert thumbnail — feels like a physical card */
+.skeu-cert {
+  background: #0d1520;
+  border-radius: 10px;
+  border: 1px solid #1e2d40;
+  box-shadow:
+    0 1px 0 #253548,
+    0 2px 4px #030609,
+    inset 0 1px 0 #1a2a3a;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+.skeu-cert:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 #2d3f55,
+    0 6px 16px #030609,
+    inset 0 1px 0 #1e3248;
+}
+.skeu-cert:active {
+  transform: translateY(0);
+  box-shadow:
+    0 1px 0 #1e2d40,
+    inset 0 2px 4px #04080f;
+}
+
+/* Skeuomorphic tag badge */
+.skeu-tag {
+  background: #0a1220;
+  border: 1px solid #1a2a3a;
+  border-radius: 5px;
+  box-shadow:
+    inset 0 1px 0 #1e3040,
+    0 1px 2px #030609;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  padding: 2px 7px;
+  color: #64a0b8;
+}
+
+/* Skeuomorphic contact card row */
+.skeu-contact-row {
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid #111d2a;
+  background: #0a1118;
+  box-shadow:
+    inset 0 1px 0 #16253580,
+    0 1px 3px #030609;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0; /* allows the row to shrink instead of forcing horizontal overflow on narrow screens */
+}
+.skeu-contact-row span:last-child {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.skeu-contact-row:hover {
+  background: #0d1824;
+  border-color: #1e3045;
+}
+
+/* ══════════════════════════════════════
+   ANIMATIONS (clean, no glow)
+══════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up   { animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-1 { animation: fadeUp 0.55s 0.08s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-2 { animation: fadeUp 0.55s 0.18s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-3 { animation: fadeUp 0.55s 0.28s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-4 { animation: fadeUp 0.55s 0.38s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-5 { animation: fadeUp 0.55s 0.48s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in { animation: fadeIn 0.4s ease both; }
+
+/* Logo shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.logo-shimmer {
+  background: linear-gradient(90deg, #22d3ee 0%, #e2f8ff 45%, #22d3ee 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Dot drift */
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+.dot-drift { animation: drift 5s ease-in-out infinite; }
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+/* Sidebar tooltip */
+.sidebar-tooltip {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  background: #0d1520;
+  border: 1px solid #1e2d40;
+  box-shadow: 2px 2px 8px #04080f, -1px -1px 4px #14202e;
+  color: #64a0b8;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.sidebar-icon-wrap:hover .sidebar-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+.sidebar-icon-wrap {
+  position: relative;
+}
+
+/* Contact icon circle (neumorphic) */
+.contact-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #0d1520;
+  border: 1px solid #1a2535;
+  box-shadow: 2px 2px 6px #04080f, -1px -1px 4px #16283a;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+a:hover .contact-icon { border-color: #22d3ee40; }
+
+/* Nav active dot */
+.nav-dot {
+  width: 3px; height: 3px;
+  background: #22d3ee;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   STATUS COLOR UTILITIES
+   Used deliberately — not decoratively:
+   success = verified/certs, warn = active/live,
+   alert = standout rank stat, special = ML/AI tags,
+   route = systems/network tags
+══════════════════════════════════════ */
+.text-status-success { color: var(--c-success); }
+.text-status-info     { color: var(--c-info); }
+.text-status-warn     { color: var(--c-warn); }
+.text-status-alert    { color: var(--c-alert); }
+.text-status-special  { color: var(--c-special); }
+.text-status-route    { color: var(--c-route); }
+
+.bg-status-success { background-color: var(--c-success); }
+.bg-status-warn     { background-color: var(--c-warn); }
+.bg-status-alert    { background-color: var(--c-alert); }
+
+.border-status-success { border-color: color-mix(in srgb, var(--c-success) 35%, transparent); }
+.border-status-warn     { border-color: color-mix(in srgb, var(--c-warn) 35%, transparent); }
+.border-status-alert    { border-color: color-mix(in srgb, var(--c-alert) 35%, transparent); }
+.border-status-special  { border-color: color-mix(in srgb, var(--c-special) 35%, transparent); }
+.border-status-route    { border-color: color-mix(in srgb, var(--c-route) 35%, transparent); }
+
+.bg-status-success-soft { background-color: color-mix(in srgb, var(--c-success) 10%, transparent); }
+.bg-status-warn-soft     { background-color: color-mix(in srgb, var(--c-warn) 10%, transparent); }
+.bg-status-alert-soft    { background-color: color-mix(in srgb, var(--c-alert) 10%, transparent); }
+.bg-status-special-soft  { background-color: color-mix(in srgb, var(--c-special) 10%, transparent); }
+.bg-status-route-soft    { background-color: color-mix(in srgb, var(--c-route) 10%, transparent); }
+
+/* Tag chip variants — skeu-tag base + color override */
+.skeu-tag-success { color: var(--c-success); border-color: color-mix(in srgb, var(--c-success) 30%, #1a2a3a); }
+.skeu-tag-warn     { color: var(--c-warn);    border-color: color-mix(in srgb, var(--c-warn) 30%, #1a2a3a); }
+.skeu-tag-special  { color: var(--c-special); border-color: color-mix(in srgb, var(--c-special) 30%, #1a2a3a); }
+.skeu-tag-route    { color: var(--c-route);   border-color: color-mix(in srgb, var(--c-route) 30%, #1a2a3a); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .progress-bar { transition: none; }
+}
+
+/* ══════════════════════════════════════
+   SIDEBAR ICON BUTTONS — neumorphic circle wrap
+══════════════════════════════════════ */
+.sidebar-icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #0d1520;
+  border: 1px solid #1a2535;
+  box-shadow: 2px 2px 6px #04080f, -1px -1px 4px #16283a;
+  display: flex; align-items: center; justify-content: center;
+  color: #45607a;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.sidebar-icon-btn:hover {
+  transform: translateY(-2px) scale(1.06);
+}
+.sidebar-icon-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+.sidebar-icon-btn--github:hover    { color: #e6edf3; border-color: #30363d; }
+.sidebar-icon-btn--thm:hover       { color: var(--c-success); border-color: color-mix(in srgb, var(--c-success) 40%, transparent); }
+.sidebar-icon-btn--htb:hover       { color: var(--c-success); border-color: color-mix(in srgb, var(--c-success) 40%, transparent); }
+.sidebar-icon-btn--linkedin:hover  { color: #4ba3e3; border-color: #4ba3e360; }
+.sidebar-icon-btn--leetcode:hover  { color: var(--c-warn); border-color: color-mix(in srgb, var(--c-warn) 40%, transparent); }
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR (desktop / fine-pointer only)
+══════════════════════════════════════ */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor, html.has-custom-cursor body { cursor: none; }
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"],
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select { cursor: none; }
+}
+
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  will-change: transform;
+  /* Centering offset (-50%, -50%) is applied via JS alongside the live
+     position on every frame — see custom-cursor.component.ts. Setting it
+     here too would be redundant since inline style.transform always wins,
+     but the JS now folds both into one write so there's no longer a
+     conflict between the two approaches. */
+}
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--c-info);
+  transition: opacity 0.15s ease, background-color 0.2s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid color-mix(in srgb, var(--c-info) 55%, transparent);
+  transition: width 0.18s ease, height 0.18s ease, border-color 0.2s ease,
+              background-color 0.2s ease, opacity 0.15s ease;
+}
+.cursor-ring.is-active {
+  width: 46px; height: 46px;
+  background: color-mix(in srgb, var(--c-info) 8%, transparent);
+  border-color: color-mix(in srgb, var(--c-info) 80%, transparent);
+}
+.cursor-dot.is-hidden, .cursor-ring.is-hidden { opacity: 0; }

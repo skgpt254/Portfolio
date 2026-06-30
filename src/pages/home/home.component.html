@@ -1,211 +1,534 @@
-<!-- Hero Section -->
-<div class="text-center py-16 sm:py-24 relative overflow-hidden">
-  <!-- Animated background grid -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
-  </div>
+<!-- ══ SCROLL PROGRESS BAR ══ -->
+<div class="progress-bar" [style.width]="scrollProgress() + '%'" aria-hidden="true"></div>
 
-  <h1 class="font-mono text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight relative z-10">
-    <span class="block text-slate-100">Sandesh Kumar Gupta</span>
-    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 mt-2 animate-pulse">CyberSecurity Enthusiast</span>
-  </h1>
-  <p class="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-slate-400 relative z-10">
-    I uncover, exploit, and secure real-world vulnerabilities before attackers can.
-  </p>
-  <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4 relative z-10">
-    <a [routerLink]="['/contact']" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-cyan-600 to-blue-600 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:scale-105">
-      Contact
+<!-- ══ LEFT SIDEBAR ══ -->
+<aside class="fixed left-3 sm:left-4 bottom-0 z-50 hidden md:flex flex-col items-center gap-3 pb-6">
+  <div class="sidebar-icon-wrap">
+    <a href="https://github.com/skgpt254" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="sidebar-icon-btn sidebar-icon-btn--github">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+      </svg>
     </a>
-    <a [routerLink]="['/projects']" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-slate-600 text-base font-medium rounded-md text-cyan-400 bg-slate-800/50 backdrop-blur-sm transition-all duration-300">
-      Projects
-    </a>
+    <span class="sidebar-tooltip">GitHub</span>
   </div>
-</div>
+  <div class="sidebar-icon-wrap">
+    <a href="https://tryhackme.com/p/sandeshkgupta" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe" class="sidebar-icon-btn sidebar-icon-btn--thm">
+      <!-- Terminal prompt glyph — represents the "hands-on hacking room" identity more accurately than a flag -->
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 17l6-6-6-6M12 19h8"/>
+      </svg>
+    </a>
+    <span class="sidebar-tooltip">TryHackMe</span>
+  </div>
+  <div class="sidebar-icon-wrap">
+    <a href="https://profile.hackthebox.com/profile/019c9f97-bb38-734d-a5d5-c916377725f8" target="_blank" rel="noopener noreferrer" aria-label="HackTheBox" class="sidebar-icon-btn sidebar-icon-btn--htb">
+      <!-- Hexagon — HTB's actual brand mark shape -->
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 1.5L2.25 7.5v9L12 22.5l9.75-6v-9L12 1.5zm0 2.06l7.88 5.07L12 13.7 4.12 8.63 12 3.56zm-8.25 6.5L11.25 15v6l-7.5-4.5V10.06zm9 10.94v-6l7.5-4.94v6L12.75 21z"/>
+      </svg>
+    </a>
+    <span class="sidebar-tooltip">HackTheBox</span>
+  </div>
+  <div class="sidebar-icon-wrap">
+    <a href="https://www.linkedin.com/in/sandeshkgupta/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="sidebar-icon-btn sidebar-icon-btn--linkedin">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+    <span class="sidebar-tooltip">LinkedIn</span>
+  </div>
+  <div class="sidebar-icon-wrap">
+    <a href="https://leetcode.com/u/sandeshkgpt/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode" class="sidebar-icon-btn sidebar-icon-btn--leetcode">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+      </svg>
+    </a>
+    <span class="sidebar-tooltip">LeetCode</span>
+  </div>
+  <div class="w-px h-16 bg-gradient-to-b from-slate-700/40 to-transparent mt-1"></div>
+</aside>
 
+<!-- ══ RIGHT SIDEBAR ══ -->
+<aside class="fixed right-3 sm:right-4 bottom-0 z-50 hidden md:flex flex-col items-center gap-3 pb-6">
+  <a href="mailto:guptask0722@gmail.com"
+     class="text-slate-600 hover:text-cyan-400 transition-all duration-200 hover:-translate-y-0.5 font-mono text-[10px] tracking-widest"
+     style="writing-mode:vertical-rl;text-orientation:mixed;">
+    guptask0722@gmail.com
+  </a>
+  <div class="w-px h-16 bg-gradient-to-b from-slate-700/40 to-transparent mt-1"></div>
+</aside>
 
+<!-- ══ TOP NAV ══ -->
+<nav class="fixed top-2 left-0 right-0 z-40">
+  <div class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-16">
+    <!-- Neumorphic nav pill -->
+    <div class="neu-card px-5 h-12 flex items-center justify-between rounded-2xl">
+      <button (click)="scrollTo('home')"
+        class="font-mono text-base font-bold focus:outline-none group" aria-label="Top">
+        <span class="logo-shimmer">&lt;S/&gt;</span><span class="text-slate-500 group-hover:text-slate-300 transition-colors duration-200 text-sm"> Sandesh</span>
+      </button>
 
-<!-- Statistics Section -->
-<div class="max-w-5xl mx-auto px-4 mb-20">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    @for (stat of stats; track $index) {
-      <div class="relative group">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-xl blur-xl opacity-0 transition-opacity duration-500"></div>
-        <div class="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 text-center transition-all duration-300">
-          <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">{{ stat.value }}</div>
-          <div class="text-sm text-slate-400 mt-1">{{ stat.label }}</div>
-          <div class="text-xs text-cyan-500 mt-2 font-mono">{{ stat.trend }}</div>
-        </div>
+      <div class="hidden md:flex items-center gap-7">
+        @for (s of sections; track s) {
+          <button (click)="scrollTo(s)"
+            class="font-mono text-xs transition-colors duration-200 focus:outline-none flex flex-col items-center gap-0.5 hover:text-slate-300"
+            [class.text-cyan-400]="activeSection() === s"
+            [class.text-slate-500]="activeSection() !== s">
+            <span><span class="text-cyan-600">#</span>{{ s }}</span>
+            @if (activeSection() === s) {
+              <span class="nav-dot animate-fade-in"></span>
+            }
+          </button>
+        }
+      </div>
+
+      <button (click)="mobileMenuOpen.set(!mobileMenuOpen())"
+        class="md:hidden text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
+        [attr.aria-expanded]="mobileMenuOpen()" aria-label="Menu">
+        @if (mobileMenuOpen()) {
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        } @else {
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    @if (mobileMenuOpen()) {
+      <div class="mt-2 neu-card px-5 py-4 flex flex-col gap-3 animate-fade-up rounded-2xl">
+        @for (s of sections; track s) {
+          <button (click)="scrollTo(s); mobileMenuOpen.set(false)"
+            class="font-mono text-sm text-slate-400 hover:text-cyan-400 transition-colors text-left focus:outline-none">
+            <span class="text-cyan-600">#</span>{{ s }}
+          </button>
+        }
       </div>
     }
   </div>
-</div>
+</nav>
 
-<!-- Main Knowledge Hub Section -->
-<div class="pb-20">
-  <div class="max-w-6xl mx-auto px-4">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full mb-6">
-        <span class="text-cyan-400 text-sm font-mono">// classified_knowledge</span>
+<!-- ══════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════ -->
+<main class="pl-0 md:pl-14 md:pr-14 pt-16 sm:pt-20">
+
+  <!-- ── HERO ── -->
+  <section id="home" class="min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-24 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center w-full py-12 md:py-16">
+
+      <div class="space-y-6">
+        <p class="font-mono text-cyan-500 text-xs tracking-[0.2em] uppercase animate-fade-up">Hi, I'm</p>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight animate-fade-up-1">
+          Sandesh Kumar<br><span class="text-cyan-400">Gupta</span>
+        </h1>
+        <div class="font-mono text-slate-400 text-base min-h-[1.5rem] select-none animate-fade-up-2">
+          {{ typedText() }}<span class="text-cyan-400 transition-opacity" [class.opacity-0]="!showCursor()">|</span>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed max-w-md animate-fade-up-3">
+          Pre-final year B.Tech CSE @ GLA University. I find and exploit vulnerabilities before attackers can.
+          Top 2% TryHackMe · 7th&nbsp;/&nbsp;9,000+ Hack IITK CTF.
+        </p>
+        <!-- Status badge — neumorphic, amber = live/active (semantic, not decorative) -->
+        <div class="inline-flex items-center gap-2.5 neu-inset px-4 py-2 animate-fade-up-4">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-warn opacity-60"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-status-warn"></span>
+          </span>
+          <span class="font-mono text-[11px] text-slate-500">Working on <strong class="text-slate-300">eRDS &amp; PacketDive</strong></span>
+        </div>
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 pt-1 animate-fade-up-5">
+          <button (click)="scrollTo('projects')"
+            class="neu-btn px-5 py-2 font-mono text-xs text-cyan-400 focus:outline-none">
+            View Projects
+          </button>
+          <button (click)="scrollTo('contact')"
+            class="neu-btn px-5 py-2 font-mono text-xs text-slate-400 hover:text-slate-200 transition-colors focus:outline-none">
+            Contact Me
+          </button>
+          <button (click)="scrollTo('projects')"
+            class="font-mono text-[11px] text-slate-600 hover:text-slate-400 transition-colors self-center ml-1 focus:outline-none flex items-center gap-1.5">
+            Scroll
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+        </div>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-white mb-4">
-        Cyber Knowledge Hub
-      </h2>
-      <p class="text-slate-400 max-w-2xl mx-auto text-lg">
-        Beyond theory — practical cybersecurity education with real-world attack scenarios, 
-        <span class="text-cyan-400">step-by-step prevention guides</span>, and actionable intelligence.
+
+      <!-- Profile -->
+      <div class="relative flex justify-center animate-fade-up-2">
+        <div class="relative">
+          <div class="absolute -top-5 -right-5 grid grid-cols-5 gap-1.5 opacity-20 pointer-events-none dot-drift">
+            @for (_ of dotGrid; track $index) {
+              <div class="w-1 h-1 bg-cyan-500 rounded-full"></div>
+            }
+          </div>
+          <!-- Neumorphic image frame -->
+          <div class="neu-card p-1.5 rounded-2xl w-64 h-80 md:w-72 md:h-96">
+            <img src="assets/images/profile.webp" alt="Sandesh Kumar Gupta"
+              class="w-full h-full object-cover object-top rounded-xl"
+              loading="eager" fetchpriority="high">
+          </div>
+          <div class="absolute -bottom-5 -left-5 grid grid-cols-5 gap-1.5 opacity-15 pointer-events-none dot-drift" style="animation-delay:2.5s">
+            @for (_ of dotGrid; track $index) {
+              <div class="w-1 h-1 bg-slate-500 rounded-full"></div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUOTE ── -->
+  <div class="py-12 px-6 md:px-16 max-w-2xl mx-auto reveal">
+    <div class="neu-inset px-8 py-7 text-center">
+      <p class="font-mono text-slate-400 text-sm md:text-base leading-relaxed italic">
+        "The quieter you become, the more you can hear."
       </p>
+      <p class="font-mono text-slate-600 text-xs mt-3">— Ram Dass</p>
     </div>
-
-    <!-- Quick Action Tips -->
-    <div class="mb-16">
-      <h3 class="text-xl font-semibold text-cyan-400 mb-6 font-mono flex items-center gap-2">
-        <span class="text-2xl">⚡</span> Quick Security Actions
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        @for (tip of quickTips; track $index) {
-          <div class="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1">
-            <div class="text-3xl mb-3">{{ tip.icon }}</div>
-            <h4 class="font-semibold text-slate-100 mb-2">{{ tip.tip }}</h4>
-            <p class="text-sm text-slate-400 transition-colors">{{ tip.action }}</p>
-          </div>
-        }
-      </div>
-    </div>
-
-    <!-- Two Column Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      
-      <!-- Knowledge Cards - Left Column -->
-      <div class="space-y-6">
-        <h3 class="text-xl font-semibold text-cyan-400 mb-6 font-mono flex items-center gap-2">
-           Deep Dive Knowledge
-        </h3>
-        
-        @for (card of knowledgeCards; track $index) {
-          <div
-            (click)="toggleCard($index)"
-            class="group cursor-pointer bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden transition-all duration-300">
-            
-            <!-- Card Header -->
-            <div class="p-5 flex items-start gap-4">
-              <div class="text-3xl flex-shrink-0">{{ card.icon }}</div>
-              <div class="flex-1">
-                <div class="flex items-center gap-2 mb-1">
-                  <h4 class="font-semibold text-slate-100 transition-colors">{{ card.title }}</h4>
-                  <span [class]="getDifficultyClass(card.difficulty)" class="text-xs px-2 py-0.5 rounded-full font-mono">{{ card.difficulty }}</span>
-                </div>
-                <p class="text-sm text-slate-400">{{ card.subtitle }}</p>
-              </div>
-              <svg
-                class="w-5 h-5 text-slate-500 transform transition-transform duration-300 flex-shrink-0"
-                [class.rotate-180]="activeCardIndex() === $index"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            
-            <!-- Expanded Content -->
-            <div
-              class="overflow-hidden transition-all duration-500 ease-in-out bg-slate-900/50"
-              [class.max-h-0]="activeCardIndex() !== $index"
-              [class.max-h-96]="activeCardIndex() === $index"
-              [class.opacity-0]="activeCardIndex() !== $index"
-              [class.opacity-100]="activeCardIndex() === $index">
-              <div class="p-5 pt-0 border-t border-slate-700/50">
-                <!-- The Problem -->
-                <div class="mb-4">
-                  <span class="text-xs font-mono text-red-400 uppercase tracking-wider">The Reality</span>
-                  <p class="text-slate-300 mt-2 text-sm leading-relaxed">{{ card.content }}</p>
-                </div>
-                
-                <!-- How To Fix -->
-                <div class="mb-4">
-                  <span class="text-xs font-mono text-green-400 uppercase tracking-wider">How To Protect Yourself</span>
-                  <ul class="mt-2 space-y-2">
-                    @for (step of card.howTo; track $index) {
-                      <li class="text-sm text-slate-400 flex items-start gap-2">
-                        <span class="text-cyan-500">→</span>
-                        <span>{{ step }}</span>
-                      </li>
-                    }
-                  </ul>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mt-4">
-                  @for (tag of card.tags; track $index) {
-                    <span class="text-xs px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded-md font-mono">#{{ tag }}</span>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-      
-      <!-- Attack Scenarios - Right Column -->
-      <div class="space-y-6">
-        <h3 class="text-xl font-semibold text-cyan-400 mb-6 font-mono flex items-center gap-2">
-          Real Attack Scenarios
-        </h3>
-        
-        @for (scenario of attackScenarios; track $index) {
-          <div
-            (click)="toggleScenario($index)"
-            class="group cursor-pointer bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden transition-all duration-300">
-            
-            <!-- Scenario Header -->
-            <div class="p-5 flex items-center justify-between">
-              <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-500/30 flex items-center justify-center">
-                  <span class="text-xl">💀</span>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-slate-100 transition-colors">{{ scenario.name }}</h4>
-                  <span [class]="getRiskLevelClass(scenario.riskLevel)" class="text-xs px-2 py-0.5 rounded border font-mono">{{ scenario.riskLevel }} Risk</span>
-                </div>
-              </div>
-              <svg
-                class="w-5 h-5 text-slate-500 transform transition-transform duration-300"
-                [class.rotate-180]="activeScenarioIndex() === $index"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            
-            <!-- Expanded Content -->
-            <div
-              class="overflow-hidden transition-all duration-500 ease-in-out bg-slate-900/50"
-              [class.max-h-0]="activeScenarioIndex() !== $index"
-              [class.max-h-80]="activeScenarioIndex() === $index"
-              [class.opacity-0]="activeScenarioIndex() !== $index"
-              [class.opacity-100]="activeScenarioIndex() === $index">
-              <div class="p-5 pt-0 border-t border-slate-700/50 space-y-4">
-                <div>
-                  <span class="text-xs font-mono text-orange-400 uppercase tracking-wider">What It Does</span>
-                  <p class="text-slate-300 mt-1 text-sm">{{ scenario.description }}</p>
-                </div>
-                <div>
-                  <span class="text-xs font-mono text-green-400 uppercase tracking-wider">Prevention</span>
-                  <p class="text-slate-300 mt-1 text-sm">{{ scenario.prevention }}</p>
-                </div>
-                <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3">
-                  <span class="text-xs font-mono text-red-400 uppercase tracking-wider">Real-World Case</span>
-                  <p class="text-slate-300 mt-1 text-sm">{{ scenario.realWorld }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-        
-
-      </div>
-    </div>
-    
-    <!-- Call to Action -->
-    <!-- Cyber Memory Game Mission (Replaces Declassified Intel) -->
-    <app-cyber-memory-game class="block mt-20" />
-
   </div>
-</div>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="py-20 px-6 md:px-12 lg:px-24 max-w-6xl mx-auto scroll-mt-20">
+    <div class="flex items-center gap-5 mb-10 reveal">
+      <h2 class="font-display text-xl font-bold text-slate-200 whitespace-nowrap">
+        <span class="text-status-route">#</span>projects
+      </h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-slate-700/60 to-transparent"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      @for (project of projects(); track project.slug; let i = $index) {
+        <article [class]="revealClass('neu-card', i)">
+          <div class="h-36 overflow-hidden rounded-t-2xl bg-slate-900/60 relative">
+            <img [src]="project.imageUrl" [alt]="project.title"
+              class="w-full h-full object-cover opacity-50 hover:opacity-70 transition-opacity duration-300"
+              loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1520] to-transparent pointer-events-none"></div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              @for (tag of project.tags.slice(0, 4); track tag) {
+                <span [class]="tagColor(tag)">{{ tag }}</span>
+              }
+            </div>
+            <h3 class="font-semibold text-slate-200 text-sm mb-2 leading-snug">{{ project.title }}</h3>
+            <p class="text-slate-500 text-xs leading-relaxed flex-1 line-clamp-3">{{ project.summary }}</p>
+            <div class="mt-4 pt-3 border-t border-slate-800/60">
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 font-mono text-[11px] text-cyan-500 hover:text-cyan-300 transition-colors focus:outline-none">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  View on GitHub →
+                </a>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="py-20 px-6 md:px-12 lg:px-24 max-w-6xl mx-auto scroll-mt-20">
+    <div class="flex items-center gap-5 mb-10 reveal">
+      <h2 class="font-display text-xl font-bold text-slate-200 whitespace-nowrap">
+        <span class="text-status-special">#</span>skills
+      </h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-slate-700/60 to-transparent"></div>
+    </div>
+
+    <!-- Skill grid — neumorphic tiles -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2.5 sm:gap-3">
+      @for (skill of skills(); track skill.name; let i = $index) {
+        <div [class]="revealClass('neu-card p-3.5 flex flex-col items-center gap-2 rounded-2xl cursor-default', i)">
+          <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" [attr.aria-label]="skill.name" role="img">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" [attr.d]="skillIcons[skill.name] ?? 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'" />
+          </svg>
+          <span class="font-mono text-[9px] text-slate-500 text-center leading-tight">{{ skill.name }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Tool stack -->
+    <div class="mt-10 reveal">
+      <p class="font-mono text-[10px] text-slate-600 uppercase tracking-[0.18em] mb-4">Tools &amp; Stack</p>
+      <div class="flex flex-wrap gap-2">
+        @for (tool of toolStack; track tool.name) {
+          <div class="skeu-tag inline-flex items-center gap-1.5 py-1.5 px-3">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" [attr.aria-label]="tool.name" role="img">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" [attr.d]="tool.icon" />
+            </svg>
+            <span class="text-slate-400">{{ tool.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="py-20 px-6 md:px-12 lg:px-24 max-w-6xl mx-auto scroll-mt-20">
+    <div class="flex items-center gap-5 mb-10 reveal">
+      <h2 class="font-display text-xl font-bold text-slate-200 whitespace-nowrap">
+        <span class="text-status-success">#</span>about-me
+      </h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-slate-700/60 to-transparent"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
+      <!-- Bio -->
+      <div class="space-y-4 text-slate-500 text-sm leading-relaxed reveal">
+        <p>Hello, I'm <span class="text-cyan-400 font-semibold">Sandesh Kumar Gupta</span>.</p>
+        <p>Pre-final year B.Tech CSE at <span class="text-slate-300">GLA University, Mathura</span>.
+          I specialise in offensive security — penetration testing, kernel-level systems hacking, and ML-driven threat detection.</p>
+        <p>Ranked <span class="text-cyan-400 font-semibold">7th / 9,000+ teams</span> at Hack IITK CTF (IIT Kanpur 2026),
+          5th at Scythe CTF (IIT Roorkee 2025), and <span class="text-cyan-400 font-semibold">Top 2% globally</span>
+          on TryHackMe. Interning at <span class="text-slate-300">APCSIP-2026</span>.</p>
+
+        <!-- Achievement cards — neumorphic -->
+        <div class="grid grid-cols-2 gap-2.5 pt-2">
+          @for (a of achievements; track a.label; let i = $index) {
+            <div [class]="revealClass('neu-inset px-3 py-3 flex items-start gap-2.5 rounded-xl', i, 999)">
+              <svg [class]="'w-4 h-4 flex-shrink-0 mt-0.5 text-status-' + a.color"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" [attr.aria-label]="a.label" role="img">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" [attr.d]="a.icon" />
+              </svg>
+              <div>
+                <p class="font-semibold text-slate-300 text-[11px] leading-tight">{{ a.label }}</p>
+                <p class="text-slate-600 text-[10px] mt-0.5 leading-tight">{{ a.sub }}</p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Resume button -->
+        <div class="flex flex-wrap gap-2.5 pt-2">
+          <a href="assets/Resume-Sandesh-Kumar-Gupta.pdf" target="_blank" rel="noopener noreferrer" download
+             class="neu-btn inline-flex items-center gap-2 font-mono text-[11px] text-slate-400 hover:text-cyan-400 transition-colors px-4 py-2 focus:outline-none">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile image -->
+      <div class="relative flex justify-center md:justify-end reveal reveal-d2">
+        <div class="relative w-56 md:w-60">
+          <div class="absolute -top-4 -right-4 grid grid-cols-5 gap-1.5 opacity-15 pointer-events-none dot-drift">
+            @for (_ of dotGrid; track $index) {
+              <div class="w-1 h-1 bg-cyan-500 rounded-full"></div>
+            }
+          </div>
+          <div class="neu-card p-1.5 rounded-2xl">
+            <img src="assets/images/profile1.webp" alt="Sandesh Kumar Gupta"
+              class="w-full rounded-xl object-cover" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <div class="mt-20">
+      <div class="flex items-center gap-5 mb-8 reveal">
+        <h3 class="font-display text-xl font-bold text-slate-200 whitespace-nowrap">
+          <span class="text-status-success">#</span>certifications
+        </h3>
+        <div class="flex-1 h-px bg-gradient-to-r from-slate-700/60 to-transparent"></div>
+      </div>
+
+      <!-- Cert name list -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
+        @for (cert of certifications(); track cert; let i = $index) {
+          <div [class]="revealClass('skeu-contact-row', i)">
+            <svg class="w-3.5 h-3.5 text-cyan-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <span class="text-slate-400 text-xs leading-snug">{{ cert }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Cert image grid — paginated, loads in batches of 6 -->
+      <div id="certifications-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        @for (img of visibleCertImages(); track img; let i = $index) {
+          <div [class]="revealClass('skeu-cert aspect-[4/3]', i)"
+            (click)="openCert(i)"
+            (keydown.enter)="openCert(i)"
+            (keydown.space)="openCert(i)"
+            tabindex="0" role="button"
+            [attr.aria-label]="'View certificate ' + (i + 1)">
+            <img [src]="img" alt="Certificate {{ i + 1 }}"
+              class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-200"
+              loading="eager"
+              decoding="async">
+          </div>
+        }
+      </div>
+
+      <!-- Show More / Show Less controls -->
+      <div class="flex items-center justify-center gap-3 mt-6">
+        @if (certVisibleCount() < certImages.length) {
+          <button (click)="showMoreCerts()"
+            class="neu-btn inline-flex items-center gap-2 font-mono text-xs text-slate-400 hover:text-cyan-400 transition-colors px-5 py-2.5 focus:outline-none">
+            Show More
+            <span class="text-slate-600">({{ certImages.length - certVisibleCount() }} more)</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+        } @else if (certImages.length > 6) {
+          <button (click)="showLessCerts()"
+            class="neu-btn inline-flex items-center gap-2 font-mono text-xs text-slate-500 hover:text-slate-300 transition-colors px-5 py-2.5 focus:outline-none">
+            Show Less
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+            </svg>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LIGHTBOX ── -->
+  @if (selectedCertIndex() !== null) {
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-sm animate-fade-in"
+         (click)="closeCert()" role="dialog" aria-modal="true">
+      <!-- Counter — neumorphic pill -->
+      <div class="absolute top-3 sm:top-5 left-1/2 -translate-x-1/2 z-[101] neu-card px-3 sm:px-4 py-1.5">
+        <span class="font-mono text-[10px] sm:text-[11px] text-slate-400">{{ selectedCertIndex()! + 1 }} / {{ certImages.length }}</span>
+      </div>
+      <!-- Close -->
+      <button (click)="closeCert()"
+        class="absolute top-3 right-3 sm:top-4 sm:right-4 z-[101] neu-btn p-2 text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+        aria-label="Close">
+        <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <!-- Prev — sits inside the safe edge on mobile so it never overlaps the image -->
+      <button (click)="prevCert($event)"
+        class="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-[101] neu-btn p-1.5 sm:p-2.5 text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+        aria-label="Previous">
+        <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <!-- Image -->
+      <div class="relative max-w-4xl w-full flex justify-center max-h-[80vh] sm:max-h-[88vh] mx-8 sm:mx-12" (click)="$event.stopPropagation()">
+        <img [src]="certImages[selectedCertIndex()!]"
+          alt="Certificate {{ selectedCertIndex()! + 1 }}"
+          class="max-w-full max-h-[78vh] sm:max-h-[85vh] object-contain rounded-2xl select-none"
+          style="box-shadow: 0 8px 40px #000a, 0 2px 0 #1e2d40 inset;">
+      </div>
+      <!-- Next -->
+      <button (click)="nextCert($event)"
+        class="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-[101] neu-btn p-1.5 sm:p-2.5 text-slate-400 hover:text-slate-200 transition-colors focus:outline-none"
+        aria-label="Next">
+        <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  }
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="py-20 px-6 md:px-12 lg:px-24 max-w-6xl mx-auto scroll-mt-20">
+    <div class="flex items-center gap-5 mb-10 reveal">
+      <h2 class="font-display text-xl font-bold text-slate-200 whitespace-nowrap">
+        <span class="text-status-warn">#</span>contacts
+      </h2>
+      <div class="flex-1 h-px bg-gradient-to-r from-slate-700/60 to-transparent"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div class="reveal">
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+          Open to freelance security assessments, collaborations, and internship opportunities.
+          Don't hesitate to reach out.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          @for (link of socialLinks(); track link.label) {
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer"
+               class="skeu-tag py-1.5 px-3 text-slate-400 hover:text-cyan-400 transition-colors">
+              {{ link.label }}
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Contact card -->
+      <div class="neu-card p-6 space-y-3 reveal reveal-d2 rounded-2xl">
+        <p class="font-mono text-[10px] text-slate-600 uppercase tracking-[0.2em] mb-5">Message me here</p>
+        <a href="mailto:guptask0722@gmail.com" class="skeu-contact-row group">
+          <span class="contact-icon">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </span>
+          <span class="font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">guptask0722@gmail.com</span>
+        </a>
+        <a href="tel:+919956979696" class="skeu-contact-row group">
+          <span class="contact-icon">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </span>
+          <span class="font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">+91 9956979696</span>
+        </a>
+        <a href="https://www.linkedin.com/in/sandeshkgupta/" target="_blank" rel="noopener noreferrer" class="skeu-contact-row group">
+          <span class="contact-icon">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </span>
+          <span class="font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">linkedin.com/in/sandeshkgupta</span>
+        </a>
+        <a href="https://tryhackme.com/p/sandeshkgupta" target="_blank" rel="noopener noreferrer" class="skeu-contact-row group">
+          <span class="contact-icon">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </span>
+          <span class="font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">TryHackMe — sandeshkgupta</span>
+        </a>
+        <a href="https://github.com/skgpt254" target="_blank" rel="noopener noreferrer" class="skeu-contact-row group">
+          <span class="contact-icon">
+            <svg class="w-3.5 h-3.5 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </span>
+          <span class="font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">github.com/skgpt254</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="border-t border-slate-800/30 py-7 px-6 md:px-16 mt-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <button (click)="scrollTo('home')" class="focus:outline-none group">
+        <span class="logo-shimmer font-mono text-sm font-bold">&lt;S/&gt;</span>
+        <span class="font-mono text-xs text-slate-700 group-hover:text-slate-500 transition-colors"> Sandesh Kumar Gupta</span>
+      </button>
+      <span class="font-mono text-[10px] text-slate-700">© {{ currentYear }} — Built with Angular 20</span>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/skgpt254" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-slate-400 transition-colors" aria-label="GitHub">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://tryhackme.com/p/sandeshkgupta" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] text-slate-600 hover:text-slate-400 transition-colors">THM</a>
+        <a href="https://profile.hackthebox.com/profile/019c9f97-bb38-734d-a5d5-c916377725f8" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] text-slate-600 hover:text-slate-400 transition-colors">HTB</a>
+      </div>
+    </div>
+  </footer>
+
+</main>

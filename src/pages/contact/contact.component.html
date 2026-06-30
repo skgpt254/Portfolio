@@ -1,74 +1,131 @@
-<div class="max-w-2xl mx-auto">
+<div class="max-w-2xl mx-auto space-y-10">
   <div class="text-center">
     <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Get In Touch</h1>
-    <p class="mt-4 text-lg text-slate-400">
-      Have a project in mind or need a security assessment? Let's talk.
-    </p>
+    <p class="mt-4 text-lg text-slate-400">Have a security project or collaboration in mind? Let's talk.</p>
   </div>
 
-  <div class="mt-12">
+  <!-- Quick contact cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <a href="mailto:guptask0722@gmail.com" class="bg-slate-800/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-4 text-center transition-colors group">
+      <div class="text-2xl mb-1">📧</div>
+      <p class="text-xs text-slate-400 group-hover:text-cyan-400 transition-colors break-all">guptask0722@gmail.com</p>
+    </a>
+    <a href="tel:+919956979696" class="bg-slate-800/50 border border-slate-700 hover:border-cyan-500 rounded-xl p-4 text-center transition-colors group">
+      <div class="text-2xl mb-1">📞</div>
+      <p class="text-xs text-slate-400 group-hover:text-cyan-400 transition-colors">+91 9956979696</p>
+    </a>
+    <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center">
+      <div class="text-2xl mb-1">📍</div>
+      <p class="text-xs text-slate-400">Lucknow, UP, India</p>
+    </div>
+  </div>
+
+  <!-- Social links -->
+  <div class="flex flex-wrap justify-center gap-3">
+    @for (link of socialLinks(); track link.label) {
+      <a
+        [href]="link.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
+      >
+        {{ link.label }}
+      </a>
+    }
+  </div>
+
+  <div class="border-t border-slate-700/50 pt-8">
     @switch (submissionStatus()) {
       @case ('success') {
-        <div class="bg-green-900/50 border border-green-600 text-green-300 px-4 py-3 rounded-md text-center" role="alert">
-          <strong class="font-bold">Message Sent!</strong>
-          <span class="block sm:inline"> Thank you for reaching out. I'll get back to you shortly.</span>
+        <div class="bg-green-900/50 border border-green-600 text-green-300 px-6 py-5 rounded-lg text-center" role="alert">
+          <div class="text-3xl mb-2">✅</div>
+          <strong class="block text-lg font-bold">Message Sent!</strong>
+          <span class="text-sm mt-1 block">I'll get back to you within 24 hours.</span>
         </div>
       }
       @case ('error') {
-        <div class="bg-red-900/50 border border-red-600 text-red-300 px-4 py-3 rounded-md text-center" role="alert">
-          <strong class="font-bold">Submission Failed!</strong>
-          <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+        <div class="bg-red-900/50 border border-red-600 text-red-300 px-6 py-5 rounded-lg text-center" role="alert">
+          <div class="text-3xl mb-2">❌</div>
+          <strong class="block text-lg font-bold">Submission Failed</strong>
+          <span class="text-sm mt-1 block">Please email directly at guptask0722@gmail.com</span>
+          <button (click)="submissionStatus.set('idle')" class="mt-3 text-xs underline text-red-400 hover:text-red-300">Try again</button>
         </div>
       }
       @default {
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
-          <!-- Honeypot field for spam prevention -->
-          <input type="text" formControlName="honeypot" class="hidden">
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-5" novalidate>
+          <input type="text" formControlName="honeypot" class="hidden" autocomplete="off" tabindex="-1">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label for="name" class="block text-sm font-medium text-slate-300">Name</label>
-              <input type="text" id="name" formControlName="name" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+              <label for="name" class="block text-sm font-medium text-slate-300 mb-1">Full Name <span class="text-red-400">*</span></label>
+              <input type="text" id="name" formControlName="name" autocomplete="name" placeholder="Sandesh Gupta"
+                class="block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
               @if (name?.invalid && (name?.dirty || name?.touched)) {
-                <p class="mt-1 text-sm text-red-400">Name is required.</p>
+                <p class="mt-1 text-xs text-red-400">
+                  @if (name?.errors?.['required']) { Name is required. }
+                  @else if (name?.errors?.['invalidName']) { Letters, spaces, hyphens only. }
+                </p>
               }
             </div>
             <div>
-              <label for="contact" class="block text-sm font-medium text-slate-300">Contact</label>
-              <input type="tel" id="contact" formControlName="contact" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+              <label for="contact" class="block text-sm font-medium text-slate-300 mb-1">Mobile <span class="text-red-400">*</span></label>
+              <div class="flex gap-2">
+                <select formControlName="countryCode" class="w-24 px-2 py-2 bg-slate-800 border border-slate-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                  @for (c of countries; track c.code) {
+                    <option [value]="c.code">{{ c.code }}</option>
+                  }
+                </select>
+                <input type="tel" id="contact" formControlName="contact" placeholder="9956979696"
+                  class="block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+              </div>
+              @if (contact?.invalid && (contact?.dirty || contact?.touched)) {
+                <p class="mt-1 text-xs text-red-400">Enter valid digits (7–15).</p>
+              }
             </div>
           </div>
+
           <div>
-            <label for="email" class="block text-sm font-medium text-slate-300">Email</label>
-            <input type="email" id="email" formControlName="email" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+            <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email <span class="text-red-400">*</span></label>
+            <input type="email" id="email" formControlName="email" autocomplete="email" placeholder="you@example.com"
+              class="block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
             @if (email?.invalid && (email?.dirty || email?.touched)) {
-              <p class="mt-1 text-sm text-red-400">Please enter a valid email address.</p>
+              <p class="mt-1 text-xs text-red-400">
+                @if (email?.errors?.['required']) { Email is required. }
+                @else { Enter a valid email address. }
+              </p>
             }
           </div>
+
           <div>
-            <label for="message" class="block text-sm font-medium text-slate-300">Message</label>
-            <textarea id="message" formControlName="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md shadow-sm placeholder-slate-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+            <label for="subject" class="block text-sm font-medium text-slate-300 mb-1">Subject <span class="text-red-400">*</span></label>
+            <input type="text" id="subject" formControlName="subject" placeholder="Web App Pentest Inquiry"
+              class="block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+            @if (subject?.invalid && (subject?.dirty || subject?.touched)) {
+              <p class="mt-1 text-xs text-red-400">Subject required (min 3 chars).</p>
+            }
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-300 mb-1">Message <span class="text-red-400">*</span></label>
+            <textarea id="message" formControlName="message" rows="5" placeholder="Describe your project or security requirements..."
+              class="block w-full px-3 py-2 bg-slate-800 border border-slate-600 rounded-md text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"></textarea>
             @if (message?.invalid && (message?.dirty || message?.touched)) {
-              <p class="mt-1 text-sm text-red-400">Message must be at least 10 characters long.</p>
+              <p class="mt-1 text-xs text-red-400">Message required (min 10 chars).</p>
             }
           </div>
-          <div>
-            <button type="submit" [disabled]="contactForm.invalid || submissionStatus() === 'submitting'" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-              @if (submissionStatus() === 'submitting') {
-                <span>Sending...</span>
-              } @else {
-                <span>Send Message</span>
-              }
-            </button>
-          </div>
+
+          <button type="submit" [disabled]="contactForm.invalid || submissionStatus() === 'submitting'"
+            class="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-md text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+            @if (submissionStatus() === 'submitting') {
+              <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+              </svg>
+              Sending...
+            } @else { Send Message }
+          </button>
         </form>
       }
     }
-    <div class="mt-8 text-center">
-      <p class="text-slate-400">Or schedule a call directly:</p>
-      <a href="#" class="font-medium text-cyan-400 hover:text-cyan-300">
-        Schedule a 30-Minute Consultation
-      </a>
-    </div>
   </div>
 </div>

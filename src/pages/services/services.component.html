@@ -6,16 +6,21 @@
     </p>
   </div>
 
-  <div class="max-w-4xl mx-auto space-y-8">
+  <!-- FIX: Uses @for (was already correct), added icon display, improved card design -->
+  <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
     @for (service of services(); track service.name) {
-      <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
-        <h2 class="text-2xl font-bold text-cyan-400">{{ service.name }}</h2>
-        <p class="mt-2 text-slate-300">{{ service.description }}</p>
-        <div class="mt-4">
-          <a [routerLink]="['/contact']" class="text-sm font-semibold text-cyan-400 hover:text-cyan-300">
-            Book Consultation &rarr;
-          </a>
+      <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 group flex flex-col gap-4">
+        <div class="flex items-start gap-4">
+          <span class="text-3xl" aria-hidden="true">{{ service.icon }}</span>
+          <h2 class="text-xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">{{ service.name }}</h2>
         </div>
+        <p class="text-slate-300 text-sm leading-relaxed flex-1">{{ service.description }}</p>
+        <a
+          [routerLink]="['/contact']"
+          class="inline-flex items-center text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors mt-auto focus:outline-none focus:underline"
+        >
+          Book Consultation →
+        </a>
       </div>
     }
   </div>

@@ -1,59 +1,87 @@
-# Sandesh Kumar Gupta - My Cybersecurity Portfolio 👨‍💻🔐
+# Sandesh Kumar Gupta - Cybersecurity Portfolio
 
-Hey there! 👋 I'm Sandesh. Welcome to my personal portfolio.
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Red_Team-red?style=for-the-badge)
 
-I'm a B.Tech student with a huge passion for Cybersecurity, Ethical Hacking, and Red Teaming. I built this site to showcase the cool stuff I've been working on, my certifications, and to just have a place that truly represents my skills.
+Welcome to the digital HQ of **Sandesh Kumar Gupta**. 
+This isn't just a portfolio; it's a simulated secure environment designed to showcase my journey in **Cybersecurity**, **Ethical Hacking**, and **Red Teaming**.
 
-Instead of a boring resume site, I went for a full-on "hacker dashboard" vibe. I wanted it to feel like you're actually logging into a secure system. It's built as a Single Page App (SPA) so it's super snappy.
-
-## 🌟 Cool Features
-
-Here's what I packed into this project:
-
-- **Cyberpunk/Hacker Aesthetic**: Dark mode, terminal fonts, and that classic green-on-black feel (but modernized).
-- **Live Threat Feed**: Added a simulated real-time threat feed on the home page. It looks pretty awesome.
-- **Knowledge Cards**: Little bite-sized info cards about security concepts I find interesting.
-- **Project Showcase**: A detailed look at my pentesting reports, CTF achievements, and other security projects.
-- **Responsive**: Works perfectly on your phone too, because I used Tailwind CSS.
-
-## 🛠️ The Tech I Used
-
-I wanted to use the latest tech for this to keep my dev skills sharp:
-
-- **Angular**: Bleeding edge! For that fast, component-based structure.
-- **Tailwind CSS**: For styling everything quickly without writing a million CSS files.
-- **TypeScript**: Because types save lives (and debugging time).
-
-## 🏃‍♂️ How to Run It
-
-If you want to check out the code or run it on your laptop:
-
-1.  **Clone my repo**:
-
-    ```bash
-    git clone https://github.com/skgpt254/sandesh-kumar-gupta-cybersecurity-portfolio.git
-    cd sandesh-kumar-gupta-cybersecurity-portfolio
-    ```
-
-2.  **Install the packages**:
-
-    ```bash
-    npm install
-    ```
-
-3.  **Fire it up**:
-
-    ```bash
-    npm run dev
-    ```
-
-4.  **Check it out**:
-    Open your browser and go to `http://localhost:3000/`.
-
-## 🤝 Let's Connect!
-
-If you're into cybersecurity, want to collaborate on a CTF, or just want to chat about tech, feel free to reach out through the contact form on the site.
+Instead of a traditional resume, I've built a **Single Page Application (SPA)** that mimics a hacker's dashboard/terminal interface, providing an immersive experience while you browse my skills and achievements.
 
 ---
 
-_Built with 💻 and ☕ by Sandesh Kumar Gupta._
+## Features & Highlights
+
+This project is packed with interactive elements and a distinct "Cyberpunk" aesthetic:
+
+- **Immersive Dashboard UI**: Dark mode, terminal-style typography, and glassmorphism effects for a premium "hacker" feel.
+- **Cyber Memory Game**: A built-in mini-game to test your memory skills (and take a break from the serious stuff).
+- **Knowledge Base**: "Knowledge Cards" that break down complex security concepts into bite-sized info.
+- **Achievements & Certifications**: A dedicated section showcasing CTF wins, certifications, and awards.
+- **Services Showcase**: Detailed list of offensive security services I offer.
+- **Fully Responsive**: Built with Tailwind CSS to look great on desktops, tablets, and mobile devices.
+
+## Technology Stack
+
+Built with modern web technologies to ensure high performance and maintainability:
+
+- **Angular**
+- **Tailwind CSS**
+- **TypeScript**
+- **Vite**
+
+## Project Structure
+
+A quick look at how the code is organized:
+
+```
+src/
+├── app/
+│   ├── components/      
+│   │   ├── cyber-memory-game  
+│   │   ├── header            
+│   │   └── ...
+│   ├── pages/           
+│   │   ├── home             
+│   │   ├── projects           
+│   │   ├── services           
+│   │   ├── achievements       
+│   │   └── ...
+│   └── services/         
+└── assets/               
+```
+
+## Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/skgpt254/Portfolio.git
+cd Portfolio
+```
+
+### 2. Install Dependencies
+Initialize the node modules:
+```bash
+npm install
+```
+
+### 3. Initialize the Mainframe (Run Dev Server)
+Start the local development server:
+```bash
+npm run dev
+```
+
+### 4. Access the System
+Open your browser and navigate to the secure localhost port:
+`http://localhost:3000/`.
+
+## Let's Connect
+
+I am open to collaborations on **CTFs**, **Penetration Testing projects**, or discussing the latest in InfoSec.
+
+- **Contact Form**: Use the secure channel on the [Contact Page](https://sandesh-gupta-portfolio.vercel.app/#/contact)
+- **LinkedIn/GitHub**: Links available in the application footer.
+
+---
