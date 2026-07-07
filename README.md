@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=28&duration=2500&pause=1000&color=22D3EE&center=true&vCenter=true&width=850&lines=Hi+%F0%9F%91%8B+I'm+Sandesh+Kumar+Gupta;Cybersecurity+Researcher;Ethical+Hacker+%7C+CTF+Player;Bug+Bounty+Hunter;eBPF+%2F+Kernel+Security+Enthusiast;Always+Learning+Something+New" alt="Typing SVG" />
-
 ```
 ███████╗ █████╗ ███╗   ██╗██████╗ ███████╗███████╗██╗  ██╗
 ██╔════╝██╔══██╗████╗  ██║██╔══██╗██╔════╝██╔════╝██║  ██║
@@ -28,26 +26,6 @@
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel)
 
 </div>
-
----
-
-## 🚀 Boot Sequence
-
-```text
-██████████████████████████████████████████
-Initializing Cyber Portfolio............OK
-Loading Angular 20 Application...........OK
-Loading Signals & Zoneless Runtime.......OK
-Loading Projects (eRDS, PacketDive)......OK
-Loading Skills & Services................OK
-Loading Certifications & Achievements....OK
-Loading Cyber Memory Game................OK
-Loading Contact Channel..................OK
-System Status.........................ONLINE
-██████████████████████████████████████████
-```
-
----
 
 ## 🧑‍💻 Who Am I?
 
@@ -145,28 +123,6 @@ Portfolio
 - Project pages formatted as Problem → Approach → Findings → Outcome
 - Fast performance, SEO-friendly
 
----
-
-## 🧭 Visitor Flow
-
-```text
-Home
-  │
-  ▼
-About → Services → Projects → Achievements
-  │
-  ▼
-Play Cyber Memory Game
-  │
-  ▼
-Contact
-  │
-  ▼
-Connect
-```
-
----
-
 ## 🛠️ Local Installation
 
 ```bash
@@ -211,22 +167,11 @@ http://localhost:3000
 | TryHackMe | https://tryhackme.com/p/sandeshkgupta |
 | Hack The Box | https://profile.hackthebox.com/profile/019c9f97-bb38-734d-a5d5-c916377725f8 |
 | LeetCode | https://leetcode.com/u/sandeshkgpt/ |
-| Email | guptask0722@gmail.com |
 
 ---
 
 <div align="center">
 
-```text
-SYSTEM STATUS
-
-Portfolio.............ONLINE
-Creativity.............100%
-Cybersecurity..........100%
-Coffee..................∞
-
-Mission: BUILD • BREAK • LEARN • SECURE
-```
 
 ⭐ If you found this project interesting, consider giving it a star.
 
