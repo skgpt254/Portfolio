@@ -1,0 +1,36 @@
+# Sandesh Kumar Gupta
+
+> Cybersecurity student and researcher from Mathura, Uttar Pradesh, India. B.Tech CSE at GLA University (2024-2028). Focus: eBPF and Linux kernel security, machine-learning threat detection, VAPT and CTFs. Currently a Cyber Security Intern at the Amroha Police Cyber Security Internship Program (APCSIP-2026).
+
+This is a one-page portfolio. Sections: projects, skills, about, certifications, contact.
+
+## Achievements
+- 7th place out of more than 9,000 teams: Hack IITK CTF 2026 (C3iHub, IIT Kanpur)
+- 5th place: Scythe CTF 2026 (IIT Roorkee)
+- Top 30: CodeFest'26 CTF (IIT BHU) and Bypass CTF 2025
+- Top 2% on TryHackMe
+
+## Projects
+- eRDS, an eBPF ransomware defense system written in Go and C: https://github.com/skgpt254/Cyber_Mini-Project
+- PacketDive, a network detection and response engine in Python: https://github.com/skgpt254/PacketDive
+- This portfolio (plain HTML, CSS and JavaScript): https://github.com/skgpt254/NewPortfolio
+
+## Certifications
+- Google Cybersecurity Professional Certificate (Google, Coursera)
+- Certified LLM Security Professional, CLLMSP (Red Team Leaders)
+- Certified Online Fraud Prevention Specialist, COFPS (Hack & Fix Academy)
+- Introduction to Penetration Testing (Security Blue Team)
+- AI for Cybersecurity (LinkedIn Learning)
+
+## Links
+- Portfolio: https://sandesh-gupta-portfolio.vercel.app/
+- Resume: https://drive.google.com/file/d/1NVUG00UIE2pOc-GSVBia--XadT2EzMJi/view?usp=sharing
+- GitHub: https://github.com/skgpt254
+- LinkedIn: https://www.linkedin.com/in/sandeshkgupta/
+- TryHackMe: https://tryhackme.com/p/sandeshkgupta
+- Hack The Box: https://profile.hackthebox.com/profile/019c9f97-bb38-734d-a5d5-c916377725f8
+- LeetCode: https://leetcode.com/u/sandeshkgpt/
+- Codeforces: https://codeforces.com/profile/sandeshkgupta
+
+## Contact
+Use the contact form on the portfolio, or email guptask0722@gmail.com.
