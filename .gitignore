@@ -1,0 +1,21 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Secrets (this project has none, but just in case)
+.env
+.env.*
+
+# Local tools
+node_modules/
+.vercel/
