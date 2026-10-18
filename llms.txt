@@ -1,0 +1,41 @@
+# Sandesh Kumar Gupta
+
+> Cybersecurity student and researcher in Mathura, Uttar Pradesh, India (also associated with Gorakhpur, Uttar Pradesh). Also written as Sandesh Gupta. Bachelor of Technology (B.Tech CSE) in Computer Science and Engineering at GLA University (2024-2028), with a specialization in Cybersecurity, Ethical Hacking and AI. Focus: eBPF and Linux kernel security, machine-learning threat detection, VAPT and CTFs. Currently a Cyber Security Intern at the Amroha Police Cyber Security Internship Program (APCSIP-2026).
+
+This is a one-page portfolio. Sections: projects, skills, about, certifications, contact.
+
+## Education
+- B.Tech in Computer Science and Engineering (specialization: Cybersecurity, Ethical Hacking and AI), GLA University, Mathura, 2024-2028
+- Class XII (2023) and Class X (2021): Surmount International School (Surmount School), Taramandal, Gorakhpur
+
+## Achievements
+- 7th place out of more than 9,000 teams: Hack IITK CTF 2026 (C3iHub, IIT Kanpur)
+- 5th place: Scythe CTF 2026 (IIT Roorkee)
+- Top 30: CodeFest'26 CTF (IIT BHU) and Bypass CTF 2025
+- Top 2% on TryHackMe
+
+## Projects
+- eRDS, an eBPF ransomware defense system written in Go and C: https://github.com/skgpt254/Cyber_Mini-Project
+- PacketDive, a network detection and response engine in Python: https://github.com/skgpt254/PacketDive
+- Shortlink Platform, a URL shortener with an API and a web dashboard (TypeScript, Fastify, PostgreSQL, Redis): https://github.com/skgpt254/Url-Shortner
+- This portfolio (plain HTML, CSS and JavaScript): https://github.com/skgpt254/Portfolio
+
+## Certifications
+- Google Cybersecurity Professional Certificate (Google, Coursera)
+- Certified LLM Security Professional, CLLMSP (Red Team Leaders)
+- Certified Online Fraud Prevention Specialist, COFPS (Hack & Fix Academy)
+- Introduction to Penetration Testing (Security Blue Team)
+- AI for Cybersecurity (LinkedIn Learning)
+
+## Links
+- Portfolio: https://sandesh-gupta-portfolio.vercel.app/
+- Resume: https://drive.google.com/file/d/1NVUG00UIE2pOc-GSVBia--XadT2EzMJi/view?usp=sharing
+- GitHub: https://github.com/skgpt254
+- LinkedIn: https://www.linkedin.com/in/sandeshkgupta/
+- TryHackMe: https://tryhackme.com/p/sandeshkgupta
+- Hack The Box: https://profile.hackthebox.com/profile/019c9f97-bb38-734d-a5d5-c916377725f8
+- LeetCode: https://leetcode.com/u/sandeshkgpt/
+- Codeforces: https://codeforces.com/profile/sandeshkgupta
+
+## Contact
+Use the contact form on the portfolio, or email guptask0722@gmail.com.
